@@ -1,0 +1,40 @@
+public aspect WarningMessage {
+
+	public pointcut bishopMove(Bishop bishop) : 
+		call(public boolean Bishop.legalMove(..)) && target(bishop);
+		
+		after(Bishop bishop) returning(boolean legalMove) : bishopMove(bishop){
+			if(legalMove == false) {
+				bishop.strErrorMsg = "Bishop can only move along diagonal lines";
+			}
+		}
+	
+
+	public pointcut kingMove(King king) :
+		call( public boolean King.legalMove(..) ) && target(king);
+
+	after(King king) returning(boolean legalMove) : kingMove(king) {
+		if (legalMove == false) {
+			king.strErrorMsg = "King can only move one space…";
+		}
+	}
+	
+	public pointcut knightMove(Knight knight) :
+		call( public boolean Knight.legalMove(..) ) && target(knight);
+
+	after(Knight knight) returning(boolean legalMove) : knightMove(knight) {
+		if (legalMove == false) {
+			knight.strErrorMsg = "King can only move one space…";
+		}
+	}
+
+	public pointcut rockMove(Rock rock) : 
+		call(public boolean Rock.legalMove(..)) && target(rock);
+
+	after(Rock rock) returning(boolean legalMove) : rockMove(rock){
+		if (legalMove == false) {
+			rock.strErrorMsg = "Rock can only move Horizontal or Vertical";
+		}
+	}
+
+}

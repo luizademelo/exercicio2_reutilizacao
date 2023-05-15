@@ -1,0 +1,19 @@
+public aspect WarningMessage {
+
+	public pointcut kingMove(King king) :
+		call( public boolean King.legalMove(..) ) && target(king);
+		after(King king) returning(boolean legalMove) : kingMove(king) {
+			if (legalMove == false) {
+				king.strErrorMsg = "King can only move one space…";
+			}
+	}
+		
+//	public pointcut rockMove(Rock rock) : 
+//		call(public boolean Rock.legalMove(int startRow, int startColumn, int desRow,
+//			int desColumn, int[][] playerMatrix)) && target(rock); 
+//		after(Rock rock) returning(boolean legalMove) : rockMove(rock){
+//			if(legalMove == false) {
+//				rock.strErrorMsg = "Rock can only move Horizontal or Vertical"; 
+//			}
+//		}
+}

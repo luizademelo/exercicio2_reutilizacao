@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\Users\Estudante\Downloads\reuso\chess\.metadata\.plugins\org.eclipse.jdt.core
+2336146590.index
+428012990.index
+2316295840.index
+1865797976.index
